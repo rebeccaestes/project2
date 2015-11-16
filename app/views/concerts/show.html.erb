@@ -1,0 +1,10 @@
+<h2><%= "#{@concert.headliner} at" %> 
+<%= link_to "#{@concert.venue}", @concert.venue_url %>
+<%= @concert.date %> </h2>
+<%= @concert.venue_url %>
+
+<%= image_tag @concert.headliner_pic, alt: "#{@concert.headliner}" %>
+
+<p><%= @concert.openers_etc %> <%= link_to "Tickets are $#{@concert.price}", @concert.buy %>.  </p>
+
+<p><%= link_to "Edit this info", edit_concert_path(@concert) %>

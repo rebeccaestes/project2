@@ -1,0 +1,13 @@
+<h2>Welcome to <span class="track12">Track 12</span></h2>
+
+<p>See all concerts below</p>
+<p>See your concerts: </p>
+<p>Attend a concert</p>
+<p><%= link_to "Add a concert", new_concert_path %></p>
+
+<h3>All Concerts</h3>
+<% @concerts.each do |concert| %>
+	<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date} at #{concert.venue}" %></p>
+<% end %>
+
+
