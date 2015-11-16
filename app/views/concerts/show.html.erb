@@ -1,7 +1,6 @@
-<h2><%= "#{@concert.headliner} at" %> 
-<%= link_to "#{@concert.venue}", @concert.venue_url %>
+<h2><%= link_to "#{@concert.headliner}", @concert.headliner_url  %> @
+<%= link_to "#{@concert.venue}", @concert.venue_url %>,
 <%= @concert.date %> </h2>
-<%= @concert.venue_url %>
 
 <%= image_tag @concert.headliner_pic, alt: "#{@concert.headliner}" %>
 

@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Track 12</title>
-<link href='https://fonts.googleapis.com/css?family=Berkshire+Swash|Biryani:400,300' rel='stylesheet' type='text/css'>
+
+  <link href='https://fonts.googleapis.com/css?family=Berkshire+Swash|Biryani:400,300' rel='stylesheet' type='text/css'>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= csrf_meta_tags %>
 </head>
+
 <body>
-<div id="nav">
-  <ul>
-   <li class="nav" id="track12nav"><a href="/">Track 12</a></li> 
-   <li class="nav"><a href="#">your calendar</a></li> 
-   <li class="nav"><a href="#">find concerts</a></li>
-   <li class="nav"><a href="#">(user links)</a></li>
-   </ul>
- </div>
-<div id="content"
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
-	<%= yield %>
-</div>
+
+  <div id="nav">
+    <ul>
+      <li id="track12nav" class="nav"><a href="/">Track 12</a></li>
+      <li class="nav"><a href="#">your calendar</a></li>
+      <li class="nav"><a href="#">all concerts</a></li>
+      <li class="nav">
+        <% if current_user %>
+          <%= link_to 'sign out', destroy_user_session_path, :method => :delete %>
+        <% else %>
+            <%= link_to 'sign up', new_user_registration_path %>/
+            <%= link_to 'log in', new_user_session_path %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <div id="content">
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= yield %>
+  
+  </div>
+
 </body>
+
 </html>

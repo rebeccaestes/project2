@@ -1,2 +1,6 @@
 <h2> Edit a concert</h2>
 <%= render partial: "form" %>
+
+<%= form_for @concert, method: :delete do |f| %>
+	<%= f.submit 'Delete!', class: 'delete' %>
+<% end %>

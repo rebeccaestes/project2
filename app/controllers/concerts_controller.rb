@@ -4,7 +4,7 @@ class ConcertsController < ApplicationController
 	# before_action :set_post, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@concerts = Concert.all
+		@concerts = Concert.all.order(:date)
 	end
 
 	def new
@@ -33,6 +33,7 @@ class ConcertsController < ApplicationController
 	end
 
 	def destroy
+		@concert = Concert.find(params[:id])
 		@concert.destroy
 		redirect_to concerts_path
 	end
@@ -40,6 +41,7 @@ class ConcertsController < ApplicationController
 	private
 	def concert_params
 		params.require(:concert).permit(:venue, 
+			:venue_url,
 			:city, 
 			:date, 
 			:headliner, 

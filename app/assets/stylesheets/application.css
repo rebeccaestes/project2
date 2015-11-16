@@ -54,7 +54,7 @@ li#home {
   color: white;
 }
 
-nav a:hover {
+#nav a:hover {
   color: #A8003B;
 }
 
@@ -89,6 +89,10 @@ h3 {
   font-size: 20px;
 }
 
+h2 {
+  color: #A8003B;
+}
+
 .track12 {
   font-family: 'Berkshire Swash', cursive;
   font-size: 1.3em;
@@ -97,7 +101,7 @@ h3 {
 #track12nav {
   font-size: 1.5em;
   font-family: 'Berkshire Swash', cursive;
-
+    color: #A8003B;
 }
 
 .delete {
