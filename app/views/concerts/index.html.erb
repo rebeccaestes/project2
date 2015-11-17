@@ -1,23 +1,24 @@
 <h2>Welcome to <span class="track12">Track 12</span></h2>
 
+<% if current_user %>
+
 <p><%= link_to "Add a concert", new_concert_path %></p>
 
-
-<h3>Your Concerts</h3>
+<h3>Your Upcoming Concerts</h3>
 	<!-- <p><%= @attendances %></p> -->
 
 <% @attendances.each do |attendance| %>
 	<% concert = Concert.find(attendance.concert_id) %>
-	<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date} at #{concert.venue.name}" %></p>
+<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></p>
+<% end %>
 <% end %>
 
 
 
-
-
-<h3>All Concerts</h3>
+<h3>All Upcoming Concerts</h3>
 <% @concerts.each do |concert| %>
-	<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date} at #{concert.venue.name}" %></p>
+	<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></p>
 <% end %>
 
 
+<h3>Your Past Concerts???</h3>

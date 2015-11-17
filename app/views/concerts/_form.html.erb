@@ -11,7 +11,11 @@
 	<%= f.text_field :headliner_url %></p>
 
 	<p><%= f.label :venue %><%= f.collection_select(:venue_id, @venues.order(:name), :id, :name) %> 
-	(or, add a <%= link_to "new venue", new_venue_path %>)
+	<% if @concert.id %>
+		(or, add a <%= link_to "new venue", new_concert_venue_path(@concert) %>)
+		<% else %>
+		(You can add a new venue after creating your concert.)
+		<% end %>
     </p>
 
 	<p><%= f.label :date%>

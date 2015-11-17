@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'concerts#index'
-  resources :concerts
-  resources :venues
+  resources :concerts do
+    resources :venues
+  end
 
   resources :concerts do
     member do

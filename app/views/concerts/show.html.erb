@@ -4,14 +4,14 @@
 
 <%= image_tag @concert.headliner_pic, alt: "#{@concert.headliner}" %>
 
+<% if current_user %>
 <% if Attendance.find_by(user: current_user, concert: @concert) %>
 <p><%= link_to "I'm not going", remove_attendance_concert_path(@concert), method: :delete, class: "enter" %></p>
 <% else %>
 <p><%= link_to "I'm going!", add_attendance_concert_path(@concert), method: :post, class: "enter" %></p>
+
+<% end %>
+<p><%= link_to "Edit this info", edit_concert_path(@concert) %>
 <% end %>
 
 <p><%= @concert.openers_etc %> <%= link_to "Tickets are $#{@concert.price}", @concert.buy %>.  </p>
-
-<p><%= link_to "Edit this info", edit_concert_path(@concert) %>
-
-<%= @attendances %>

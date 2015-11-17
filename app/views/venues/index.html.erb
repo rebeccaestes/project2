@@ -2,5 +2,5 @@
 
 <p>Edit venues here:</p>
 <% @venues.each do |venue| %>
-	<p><%= link_to venue.name, edit_venue_path(venue.id) %></p>
+	<p><%= link_to venue.name, edit_concert_venue_path(1, venue.id) %></p>
 <% end %>
