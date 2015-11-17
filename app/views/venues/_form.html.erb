@@ -1,0 +1,15 @@
+<%= form_for @venue do |f| %>
+
+	<p><%= f.label :name %>
+	<%= f.text_field :name %></p>
+
+	<p><%= f.label :directions %>
+	<%= f.text_field :directions %>
+	(We recommend this link to the venue's Directions page, if available.)</p>
+
+	<p><%= f.label :city %>
+	<%= f.text_field :city %></p>
+
+	<%= f.submit 'update', class: 'enter' %>
+
+<% end %>

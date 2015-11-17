@@ -7,21 +7,15 @@
 	<%= f.text_field :headliner_pic%>
 	(Check their Wikipedia page, or do a Google image search)</p>
 
-	<p><%= f.label :headliner_url%>
+	<p><%= f.label :headliner_url %>
 	<%= f.text_field :headliner_url %></p>
+
+	<p><%= f.label :venue %><%= f.collection_select(:venue_id, @venues.order(:name), :id, :name) %> 
+	(or, add a <%= link_to "new venue", new_venue_path %>)
+    </p>
 
 	<p><%= f.label :date%>
 	<%= f.date_field :date %></p>
-
-	<p><%= f.label :venue %>
-	<%= f.text_field :venue %></p>
-
-	<p><%= f.label :venue_url %>
-	<%= f.text_field :venue_url %>
-	(We recommend this link to the venue's Directions page, if available.)</p>
-
-	<p><%= f.label :city %>
-	<%= f.text_field :city %></p>
 
 	<p><%= f.label :openers_etc %>
 	<%= f.text_field :openers_etc %>

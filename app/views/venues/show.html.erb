@@ -1,0 +1,6 @@
+<h2>Top Secret Administrative Zone</h2>
+
+<p>Edit venues here:</p>
+<% @venues.each do |venue| %>
+	<p><%= link_to venue.name, edit_venue_path(venue.id) %></p>
+<% end %>

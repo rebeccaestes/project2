@@ -11,15 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116163125) do
+ActiveRecord::Schema.define(version: 20151117032708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "attendances", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "concert_id"
+  end
+
+  add_index "attendances", ["concert_id"], name: "index_attendances_on_concert_id", using: :btree
+  add_index "attendances", ["user_id"], name: "index_attendances_on_user_id", using: :btree
+
   create_table "concerts", force: :cascade do |t|
-    t.string   "venue"
-    t.string   "venue_url"
-    t.string   "city"
     t.date     "date"
     t.string   "headliner"
     t.string   "headliner_pic"
@@ -27,6 +32,7 @@ ActiveRecord::Schema.define(version: 20151116163125) do
     t.text     "openers_etc"
     t.string   "buy"
     t.integer  "price"
+    t.integer  "venue_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -49,4 +55,12 @@ ActiveRecord::Schema.define(version: 20151116163125) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "venues", force: :cascade do |t|
+    t.string "name"
+    t.string "directions"
+    t.string "city"
+  end
+
+  add_foreign_key "attendances", "concerts"
+  add_foreign_key "attendances", "users"
 end
