@@ -4,11 +4,8 @@
 <!-- Delete wouldn't work?? -->
 
 
-<% if !@venue.concerts %>
+<!-- if !@venue.concerts %> -->
 
 <%= form_for @venue, method: :delete do |f| %>
 	<%= f.submit 'Delete!', class: 'delete' %>
-<% end %>
-
-
 <% end %>

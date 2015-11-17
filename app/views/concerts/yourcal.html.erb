@@ -1,0 +1,17 @@
+<h3>Your Upcoming Concerts</h3>
+	<!-- <p><%= @attendances %></p> -->
+
+<% @attendances.each do |attendance| %>
+	<% concert = Concert.find(attendance.concert_id) %>
+	<% if concert.date > Date.today %>
+		<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></p>
+<% end %>
+<% end %>
+
+<h3>Your Past Concerts</h3>
+<% @concerts.each do |concert| %>
+	<% if concert.date < Date.today %>
+		<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %>
+	</p>
+	<% end %>
+<% end %>

@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     resources :venues
   end
 
+  get '/yourcal', to: 'concerts#yourcal', as: :yourcal
+
+
   resources :concerts do
     member do
       post 'add_attendance'

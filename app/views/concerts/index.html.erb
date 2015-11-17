@@ -2,23 +2,18 @@
 
 <% if current_user %>
 
-<p><%= link_to "Add a concert", new_concert_path %></p>
+<p>Check out the menu above to see the concerts you're going to, or to add a new one!</p>
 
-<h3>Your Upcoming Concerts</h3>
-	<!-- <p><%= @attendances %></p> -->
+<% else %>
 
-<% @attendances.each do |attendance| %>
-	<% concert = Concert.find(attendance.concert_id) %>
-<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></p>
+<p>With Track 12, you can get all the information about upcoming concerts in your area, see who else is going, and invite your friends - all in one easy place! <%= link_to "Sign up today", new_user_registration_path %> - it'll only take a moment.</p>
+
 <% end %>
-<% end %>
-
-
 
 <h3>All Upcoming Concerts</h3>
 <% @concerts.each do |concert| %>
-	<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></p>
+	<% if concert.date > Date.today %>
+		<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %>
+	<% end %>
+	</p>
 <% end %>
-
-
-<h3>Your Past Concerts???</h3>

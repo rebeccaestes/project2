@@ -1,17 +1,35 @@
 <h3><%= link_to "#{@concert.headliner}", @concert.headliner_url  %> @
 <%= link_to "#{@concert.venue.name}", @concert.venue.directions %>
-<%= @concert.date %> <%= @concert.venue.city %> </h3>
+<%= @concert.date.strftime("%b. %d, %Y") %> <%= @concert.venue.city %> </h3>
 
 <%= image_tag @concert.headliner_pic, alt: "#{@concert.headliner}" %>
 
+<p><%= @concert.openers_etc %> <%= link_to "Tickets are $#{@concert.price}", @concert.buy %>.  </p>
+
+<% others_attending = [] %> 
+<% @attendances.each do |attendance| %>
+	<% if attendance.concert == @concert && User.find(attendance.user) != current_user%>
+		<% others_attending.push(attendance) %>
+	<% end %>
+<% end %>
+<% if others_attending.length == 0 %>
+	<p>No one else is going ... yet.
+<% else %>
+	<p>Other Track 12 members are going!
+	<ul id = "attendances">
+	<% others_attending.each do |other| %>
+		<li><%= other.user.email %></li>
+	<% end %>
+<% end %>
+</ul>
+</p>
+
 <% if current_user %>
 <% if Attendance.find_by(user: current_user, concert: @concert) %>
-<p><%= link_to "I'm not going", remove_attendance_concert_path(@concert), method: :delete, class: "enter" %></p>
+<p><%= link_to "I'm not going", remove_attendance_concert_path(@concert), method: :delete, class: "enter" %>
 <% else %>
-<p><%= link_to "I'm going!", add_attendance_concert_path(@concert), method: :post, class: "enter" %></p>
+<p><%= link_to "I'm going!", add_attendance_concert_path(@concert), method: :post, class: "enter" %>
 
 <% end %>
-<p><%= link_to "Edit this info", edit_concert_path(@concert) %>
+<%= link_to "Invite a friend", "mailto:?Subject=Want%20to%20see%20a%20" + @concert.headliner + "%20concert%20with%20me?&body=It\'s%20" + @concert.date.strftime('%b. %d') + "%20at%20" + @concert.venue.name + ".%20Get%20all%20the%20info%20at%20track12.com/concert/id!", class: "enter" %><%= link_to "Edit this info", edit_concert_path(@concert), class: "enter" %></p>
 <% end %>
-
-<p><%= @concert.openers_etc %> <%= link_to "Tickets are $#{@concert.price}", @concert.buy %>.  </p>

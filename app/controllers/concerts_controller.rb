@@ -1,13 +1,10 @@
 class ConcertsController < ApplicationController
 
-	# before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :yourcal]
 	# before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-	def calendar
-	end
-
 	def index
-		@concerts = Concert.all.order(:date)
+		@concerts = Concert.all.order(:date).reverse
 		if current_user
 			@attendances = current_user.attendances
 		end
@@ -21,7 +18,7 @@ class ConcertsController < ApplicationController
 
 	def show 
 		@concert = Concert.find(params[:id])
-		# @attendances = Attendance.@concert
+		@attendances = Attendance.all
 	end
 
 	def create
@@ -49,6 +46,13 @@ class ConcertsController < ApplicationController
 		redirect_to concerts_path
 	end
 
+	def yourcal
+		@concerts = Concert.all.order(:date)
+		if current_user
+			@attendances = current_user.attendances
+		end
+	end
+
 	def add_attendance
 		@concert = Concert.find(params[:id])
 		@user = current_user
@@ -59,9 +63,7 @@ class ConcertsController < ApplicationController
 	def remove_attendance
 		@concert = Concert.find(params[:id])
 		@user = current_user
-		# @concert.attendances.where(user = @user).destroy_all
-		# @user.attendances.where(concert = @concert).destroy_all
-		# Attendance.where(concert = @concert AND user = @user).destroy_all
+		@concert.attendances.where(user: @user).destroy_all
 		redirect_to concert_path(@concert)
 	end
 

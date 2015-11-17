@@ -34,6 +34,10 @@ ul#nav {
   list-style-type: none;
 }
 
+ul#attendances {
+  margin-left: 30px;
+}
+
 li.nav {
   display: inline;
   font-size: 18px;
@@ -67,6 +71,10 @@ li#home {
 p {
   padding-top: 5px;
   }
+
+p.notice {
+  color: darkgrey;
+}
 
 /*.boardGallery a {
   text-decoration: none;

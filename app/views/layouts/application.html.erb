@@ -16,8 +16,8 @@
   <div id="nav">
     <ul>
       <li id="track12nav" class="nav"><a href="/">Track 12</a></li>
-      <li class="nav"><a href="#">your calendar</a></li>
-      <li class="nav"><a href="#">all concerts</a></li>
+      <li class="nav"><%= link_to 'your calendar', yourcal_path %></li>
+      <li class="nav"><%= link_to 'add a concert', new_concert_path %></li>
       <li class="nav">
         <% if current_user %>
           <%= link_to 'sign out', destroy_user_session_path, :method => :delete %>
