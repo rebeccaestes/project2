@@ -13,13 +13,17 @@ class ConcertsController < ApplicationController
 		@all_concerts = Concert.all.order(:date)
 		@city = params[:filter]
 		# @venue = Venue.find_by(city: @city)
-		if @city == '{"city"=>"all"}'
+		if params[:filter] == '{"city"=>"all"}'
 			@concerts = Concert.all.order(:date)
-		elsif @city == '{"city"=>"Baltimore, MD"}'
-			@concerts = Concert.venue.where(venue.city = 'Baltimore, MD')
-		# # @filter_concerts = Concert.all.order(session[:city])
+		elsif params[:filter] == '{"city"=>"Baltimore, MD"}'
+			@balt_venues = Venue.find_by(city: 'Baltimore, MD')
+			@concerts = Concert.where(venue: @balt_venues)
+		elsif params[:filter] == 'Washington, DC'
+			@concerts = Concert.venue.where(city: 'Washington, DC')
 		# # if session[:city] == all
-		# 	# @concerts = Concert.all.order(:date)			
+		# 	# @concerts = Concert.all.order(:date)
+		# @dc_concerts = Concert.venue.where(city: 'Baltimore, MD')
+			
 		end
 		
 

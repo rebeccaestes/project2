@@ -5,6 +5,11 @@ Rails.application.routes.draw do
     resources :venues
   end
 
+  # root 'users#index'
+  # devise_for :users, :path => 'accounts'
+  resources :users, only: [:index, :show]
+  resources :friendships, only: [:create, :destroy]
+
   get '/yourcal', to: 'concerts#yourcal', as: :yourcal
   get '/filter', to: 'concerts#filter' 
 

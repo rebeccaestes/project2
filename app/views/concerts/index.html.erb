@@ -48,7 +48,9 @@
 
 
 <%= params[:filter] %>
-<%= @concerts %>
+
+<%= borabora = Venue.find_by(city: 'Bora Bora') %>
+<%= borabora.id %>
 
 
 

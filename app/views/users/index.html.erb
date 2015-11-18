@@ -1,0 +1,17 @@
+<% your_friends = [] %>
+<% current_user.friends.each do |friend| %>
+	<% your_friends.push(friend.email) %>
+<% end %>
+
+<h4>Users you haven't friended:</h4>
+<ul class="reg"><% @users.each do |user| %>
+
+		<% if your_friends.include? user.email%>
+    	<% elsif user.email != current_user.email %>
+    	   <li> <span class="friend">  <%= user.email %></span>
+		<span class="add_friend"><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %></span></li>
+		<% end %>
+  </ul>
+<% end %>
+
+  <p><%= link_to "See your friends", user_path(current_user) %></p>

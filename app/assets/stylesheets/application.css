@@ -209,3 +209,8 @@ img {
 .field {
   width: 500px;
 }
+
+.friend {
+  width: 200px;
+  display: inline-block;
+}
