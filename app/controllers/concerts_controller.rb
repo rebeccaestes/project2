@@ -11,12 +11,12 @@ class ConcertsController < ApplicationController
 	def index
 		@user = current_user
 		@all_concerts = Concert.all.order(:date)
-		@city = params[:city]
-		@venue = Venue.find_by(city: @city)
-		if @city == 'all'
+		@city = params[:filter]
+		# @venue = Venue.find_by(city: @city)
+		if @city == '{"city"=>"all"}'
 			@concerts = Concert.all.order(:date)
-		# elsif @city == 'Baltimore, MD'
-		# 	@concerts = Concert.venue.where(venue.city = 'Baltimore, MD')
+		elsif @city == '{"city"=>"Baltimore, MD"}'
+			@concerts = Concert.venue.where(venue.city = 'Baltimore, MD')
 		# # @filter_concerts = Concert.all.order(session[:city])
 		# # if session[:city] == all
 		# 	# @concerts = Concert.all.order(:date)			
