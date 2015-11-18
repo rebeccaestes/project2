@@ -166,7 +166,14 @@ label {
 
 div.subtitle {
   font-size: 12px;
-  font-variant: italic;
+}
+
+.attending {
+  /*font-size: 13px;*/
+  /*font-style: italic;*/
+  color: #A8003B;
+  font-family: 'Raleway', sans-serif;
+
 }
 
 .enter {
@@ -189,7 +196,10 @@ div.subtitle {
   text-decoration: none;
 }
 
-
+span.upcoming {
+  display: inline-block;
+  width: 400px;
+}
 
 img {
   border-radius: 10px;

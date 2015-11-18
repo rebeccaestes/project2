@@ -5,7 +5,7 @@ class ConcertsController < ApplicationController
 
 	def filter
 		session[:city] = params[:city]
-		redirect_to root_path
+		# redirect_to root_path
 	end
 
 	def index
@@ -22,12 +22,8 @@ class ConcertsController < ApplicationController
 	end
 
 	def show 
-		if params[:id].to_i == true
 			@concert = Concert.find(params[:id])
 			@attendances = Attendance.all
-		else
-			redirect_to filter_path(params[:filter_by])
-		end
 	end
 
 	def create

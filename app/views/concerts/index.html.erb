@@ -20,9 +20,11 @@
 	<% cities = cities.uniq %>
 <% end %>
 
+<!-- filter by -->
 <form action="filter" method="get">
-	Filter by city:
+	<strong>Filter by city:</strong>
 	<select name="city">
+	    <option value="all">All</option>
      	<%= cities.each do |city| %>
         	<option value="<%= city %>"><%= city %></option>
      	 <% end %>
@@ -30,10 +32,16 @@
  	<input type="submit" value="Filter">
  </form>
 
-
+<!-- iterate through upcoming concerts, display link, indicate if user is attending -->
 <% @concerts.each do |concert| %>
 	<% if concert.date >= Date.today %>
-		<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %>
+		<p><span class="upcoming"><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></span>
+		<% concert.attendances.each do |attendance| %>
+			<% if attendance.user = current_user %>
+				<span class="attending">&#9733; You're attending!</span>
+			<% end %>
+		<% end %>
 	<% end %>
-	</p>
-<% end %>
+<%end %>
+
+</p>
