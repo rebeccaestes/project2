@@ -46,7 +46,7 @@
 		<p><%= link_to "I'm going!", add_attendance_concert_path(@concert), method: :post, class: "enter" %>
 	<% end %>
 
-	<%= link_to "Invite a friend", "mailto:?Subject=Want%20to%20see%20a%20" + @concert.headliner + "%20concert%20with%20me?&body=It\'s%20" + @concert.date.strftime('%b. %d') + "%20at%20" + @concert.venue.name + ".%20Get%20all%20the%20info%20at%20track12.com/concert/id!", class: "enter" %><%= link_to "Edit this info", edit_concert_path(@concert), class: "enter" %></p>
+	<%= link_to "Invite a friend", "mailto:?Subject=Want%20to%20see%20a%20" + @concert.headliner + "%20concert%20with%20me?&body=It\'s%20" + @concert.date.strftime('%b. %d') + "%20at%20" + @concert.venue.name + ".%20Get%20all%20the%20info%20at%20track12.com/concert/id!", class: "enter" %><%= link_to "Edit this info", edit_concert_path(@concert), class: "enter", target: "_blank" %></p>
 
 <% elsif current_user && @concert.date < Date.today && Attendance.find_by(user: current_user, concert: @concert) %>
 		<p class="enter">You went!</p>

@@ -4,12 +4,25 @@ class ConcertsController < ApplicationController
 	# before_action :set_post, only: [:show, :edit, :update, :destroy]
 
 	def filter
-		session[:city] = params[:city]
-		# redirect_to root_path
+		session[:city] = params[:filter]
+		redirect_to root_path
 	end
 
 	def index
-		@concerts = Concert.all.order(:date)
+		@user = current_user
+		@all_concerts = Concert.all.order(:date)
+		@city = params[:city]
+		@venue = Venue.find_by(city: @city)
+		if @city == 'all'
+			@concerts = Concert.all.order(:date)
+		# elsif @city == 'Baltimore, MD'
+		# 	@concerts = Concert.venue.where(venue.city = 'Baltimore, MD')
+		# # @filter_concerts = Concert.all.order(session[:city])
+		# # if session[:city] == all
+		# 	# @concerts = Concert.all.order(:date)			
+		end
+		
+
 		if current_user
 			@attendances = current_user.attendances
 		end

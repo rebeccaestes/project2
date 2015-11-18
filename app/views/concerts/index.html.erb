@@ -15,15 +15,15 @@
 
 <!-- create array of unique cities -->
 <% cities = [] %>
-<% @concerts.each do |this_concert| %>
+<% @all_concerts.each do |this_concert| %>
 	<% cities.push(this_concert.venue.city) %>
 	<% cities = cities.uniq %>
 <% end %>
 
 <!-- filter by -->
-<form action="filter" method="get">
+<form action="/concerts" method="get">
 	<strong>Filter by city:</strong>
-	<select name="city">
+	<select name="filter[city]">
 	    <option value="all">All</option>
      	<%= cities.each do |city| %>
         	<option value="<%= city %>"><%= city %></option>
@@ -33,7 +33,7 @@
  </form>
 
 <!-- iterate through upcoming concerts, display link, indicate if user is attending -->
-<% @concerts.each do |concert| %>
+<% @all_concerts.each do |concert| %>
 	<% if concert.date >= Date.today %>
 		<p><span class="upcoming"><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></span>
 		<% concert.attendances.each do |attendance| %>
@@ -42,6 +42,11 @@
 			<% end %>
 		<% end %>
 	<% end %>
-<%end %>
-
+<% end %>
 </p>
+
+
+
+<%= params[:filter] %>
+
+
