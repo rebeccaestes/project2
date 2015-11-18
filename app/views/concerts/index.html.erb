@@ -37,7 +37,7 @@
 	<% if concert.date >= Date.today %>
 		<p><span class="upcoming"><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></span>
 		<% concert.attendances.each do |attendance| %>
-			<% if attendance.user = current_user %>
+			<% if attendance.user == current_user %>
 				<span class="attending">&#9733; You're attending!</span>
 			<% end %>
 		<% end %>
