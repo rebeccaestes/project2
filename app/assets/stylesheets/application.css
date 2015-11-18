@@ -17,6 +17,9 @@ body {
   margin-right: 200px;*/
   color: #274459;
   /*F1FFC9*/
+  font-size: 14px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 div#nav {
@@ -28,6 +31,9 @@ div#nav {
   display: flex;
   padding-left: 10px;
   padding-top: 5px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 ul#nav {
@@ -58,6 +64,14 @@ li#home {
   color: white;
 }
 
+a {
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
 #nav a:hover {
   color: #A8003B;
 }
@@ -73,7 +87,15 @@ p {
   }
 
 p.notice {
-  color: darkgrey;
+  color: darkslategrey;
+  font-size: 18px;
+  font-family: 'Raleway', sans-serif;
+}
+
+p.alert {
+  color: #A8003B;
+  font-size: 18px;
+  font-family: 'Raleway', sans-serif;
 }
 
 /*.boardGallery a {
@@ -91,14 +113,22 @@ p.notice {
 
 
 h3 {
-  margin-top: 20px;
   padding-top: 15px;
   padding-bottom: 5px;
   font-size: 20px;
+  color: #A8003B;
+  font-family: 'Raleway', sans-serif;
+}
+
+.nav {
+  font-family: 'Raleway', sans-serif;
+  text-decoration: none;
 }
 
 h2 {
   color: #A8003B;
+  font-family: 'Raleway', sans-serif;
+
 }
 
 .track12 {
@@ -121,23 +151,40 @@ h2 {
   margin: 5px;
 }
 
+label {
+  display: inline-block;
+  width: 200px;
+}
+
+div.subtitle {
+  font-size: 12px;
+  font-variant: italic;
+}
+
 .enter {
   background-color: #A8003B;
   border: none;
-  padding: 8px;
+  padding: 5px;
   border-radius: 5px;
-  color: white;
-  margin: 5px;
+  color: black;
+  margin: 15px 5px 5px 5px;
   display: inline-block;
+  text-decoration: none;
+  box-shadow: 1px 1px 1px #888888;
+  font-size: 16px;
+  font-family: 'Raleway', sans-serif;
+
 }
 
-.enter a {
-  color: white;
+.enter:hover {
+  color: darkgrey;
   text-decoration: none;
 }
 
+
+
 img {
-  border-radius: 5px 5px;
+  border-radius: 10px;
   width: 500px;
 }
 

@@ -4,7 +4,7 @@ class ConcertsController < ApplicationController
 	# before_action :set_post, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@concerts = Concert.all.order(:date).reverse
+		@concerts = Concert.all.order(:date)
 		if current_user
 			@attendances = current_user.attendances
 		end
@@ -24,7 +24,7 @@ class ConcertsController < ApplicationController
 	def create
 		# @user = current_user
 		@concert = Concert.create!(concert_params)
-		redirect_to concert_path(@concert)
+		redirect_to concert_path(@concert), notice: "Concert created!"
 	end
 
 	def edit
@@ -37,13 +37,13 @@ class ConcertsController < ApplicationController
 	def update
 		@concert = Concert.find(params[:id])
 		@concert.update(concert_params)
-		redirect_to concert_path(@concert)
+		redirect_to concert_path(@concert), notice: "Concert updated!"
 	end
 
 	def destroy
 		@concert = Concert.find(params[:id])
 		@concert.destroy
-		redirect_to concerts_path
+		redirect_to concerts_path, notice: "Concert deleted!"
 	end
 
 	def yourcal
@@ -57,14 +57,14 @@ class ConcertsController < ApplicationController
 		@concert = Concert.find(params[:id])
 		@user = current_user
 		@concert.attendances.create(user: @user)
-		redirect_to concert_path(@concert)
+		redirect_to concert_path(@concert), notice: "See you there!"
 	end
 
 	def remove_attendance
 		@concert = Concert.find(params[:id])
 		@user = current_user
 		@concert.attendances.where(user: @user).destroy_all
-		redirect_to concert_path(@concert)
+		redirect_to concert_path(@concert), notice: "Got it. Maybe next time?"
 	end
 
 	private

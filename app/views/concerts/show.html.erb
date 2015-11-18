@@ -1,5 +1,5 @@
 <h3><%= link_to "#{@concert.headliner}", @concert.headliner_url  %> @
-<%= link_to "#{@concert.venue.name}", @concert.venue.directions %>
+<%= link_to "#{@concert.venue.name}", @concert.venue.url %>
 <%= @concert.date.strftime("%b. %d, %Y") %> <%= @concert.venue.city %> </h3>
 
 <%= image_tag @concert.headliner_pic, alt: "#{@concert.headliner}" %>

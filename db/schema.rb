@@ -21,9 +21,6 @@ ActiveRecord::Schema.define(version: 20151117032708) do
     t.integer "concert_id"
   end
 
-  add_index "attendances", ["concert_id"], name: "index_attendances_on_concert_id", using: :btree
-  add_index "attendances", ["user_id"], name: "index_attendances_on_user_id", using: :btree
-
   create_table "concerts", force: :cascade do |t|
     t.date     "date"
     t.string   "headliner"
@@ -57,10 +54,8 @@ ActiveRecord::Schema.define(version: 20151117032708) do
 
   create_table "venues", force: :cascade do |t|
     t.string "name"
-    t.string "directions"
+    t.string "url"
     t.string "city"
   end
 
-  add_foreign_key "attendances", "concerts"
-  add_foreign_key "attendances", "users"
 end

@@ -18,9 +18,9 @@ class VenuesController < ApplicationController
 		# @user = current_user
 		@venue = Venue.create!(venue_params)
 		if params[:concert_id]
-			redirect_to edit_concert_path(params[:concert_id])
+			redirect_to edit_concert_path(params[:concert_id]), notice: "Venue added! Now you can select it below."
 		else
-			redirect_to new_concert_path
+			redirect_to new_concert_path, notice: "Venue added! Now you can select it below."
 		end
 	end
 
@@ -33,23 +33,23 @@ class VenuesController < ApplicationController
 		@venue = Venue.find(params[:id])
 		@venue.update(venue_params)
 		if params[:concert_id]
-			redirect_to edit_concert_path(params[:concert_id])
+			redirect_to edit_concert_path(params[:concert_id]), notice: "Venue updated!"
 		else
-			redirect_to new_concert_path
+			redirect_to new_concert_path, notice: "Venue updated!"
 		end
 	end
 
 	def destroy
 		@venue = Venue.find(params[:id])
 		@venue.destroy
-		redirect_to concerts_path
+		redirect_to concerts_path, notice: "Venue deleted."
 	end
 
 	private
 	def venue_params
 		params.require(:venue).permit( 
 			:name,
-			:directions,
+			:url,
 			:city )
 	end
 end

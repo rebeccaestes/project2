@@ -8,7 +8,7 @@
 
 venues = Venue.create([ 
 	{name: "9:30 Club",
-		directions: "http://www.930.com/directions",
+		url: "http://www.930.com",
 		city: "Washington, DC"
 	}
 ])
@@ -16,7 +16,7 @@ concerts = Concert.create([
 	{headliner: "Metric",
 		headliner_pic: "https://upload.wikimedia.org/wikipedia/commons/4/46/Metric_-_Live_at_Coachella_Music_Festival_2013.jpg",
 		headliner_url: "http://www.ilovemetric.com/",
-		# date
+		date: 20151230,
 		openers_etc: "Openers are Centimeter and Millimeter. Doors at 7 pm, show starts at 8.",
 		buy: "http://www.google.com",
 		price: 30,
