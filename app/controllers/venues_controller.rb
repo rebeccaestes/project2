@@ -17,32 +17,24 @@ class VenuesController < ApplicationController
 	def create
 		# @user = current_user
 		@venue = Venue.create!(venue_params)
-		if params[:concert_id]
-			redirect_to edit_concert_path(params[:concert_id]), notice: "Venue added! Now you can select it below."
-		else
-			redirect_to new_concert_path, notice: "Venue added! Now you can select it below."
-		end
+		redirect_to edit_concert_path(params[:concert_id]), notice: "Venue added! Now you can select it below."
 	end
 
 	def edit
 		@venue = Venue.find(params[:id])
-		@concert = Concert.first
+		@concert = Concert.last
 	end
 
 	def update
 		@venue = Venue.find(params[:id])
 		@venue.update(venue_params)
-		if params[:concert_id]
-			redirect_to edit_concert_path(params[:concert_id]), notice: "Venue updated!"
-		else
-			redirect_to new_concert_path, notice: "Venue updated!"
-		end
+		redirect_to edit_concert_path(params[:concert_id]), notice: "Venue updated!"
 	end
 
 	def destroy
 		@venue = Venue.find(params[:id])
 		@venue.destroy
-		redirect_to concerts_path, notice: "Venue deleted."
+		redirect_to concert_venues_path(1), notice: "Request completed, administrative overlord."
 	end
 
 	private

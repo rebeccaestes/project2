@@ -12,6 +12,21 @@ venues = Venue.create([
 		city: "Washington, DC"
 	}
 ])
+
+venues = Venue.create([ 
+	{name: "Ram's Head Live",
+		url: "http://www.ramsheadlive.com",
+		city: "Baltimore, MD"
+	}
+])
+
+venues = Venue.create([ 
+	{name: "The Tiki Hut",
+		url: "http://www.google.com",
+		city: "Bora Bora"
+	}
+])
+
 concerts = Concert.create([
 	{headliner: "Metric",
 		headliner_pic: "https://upload.wikimedia.org/wikipedia/commons/4/46/Metric_-_Live_at_Coachella_Music_Festival_2013.jpg",
@@ -21,4 +36,26 @@ concerts = Concert.create([
 		buy: "http://www.google.com",
 		price: 30,
 		venue_id: 1}
+])
+
+concerts = Concert.create([
+	{headliner: "Dragonette",
+		headliner_pic: "http://blog.promotion-us.com/blog.promotion-us.com/html/wp-content/uploads/Dragonette_photobyKristinVicari_2.jpg",
+		headliner_url: "http://www.dragonetteonline.com/",
+		date: 20151130,
+		openers_etc: "Doors at 7 pm, show starts at 8.",
+		buy: "https://www.ticketfly.com/purchase/event/961003",
+		price: 30,
+		venue_id: 2}
+])
+
+concerts = Concert.create([
+	{headliner: "The Hula Collective",
+		headliner_pic: "http://www.cypressfineart.com/artists/l_schory/images2/20100123-7-HulaGirl.jpg",
+		headliner_url: "http://.boraboraisland.com",
+		date: 20151212,
+		openers_etc: "Openers are The Pineapples. 21+.",
+		buy: "www.boraboraisland.com",
+		price: 30,
+		venue_id: 3}
 ])

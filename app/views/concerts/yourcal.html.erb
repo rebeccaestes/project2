@@ -1,14 +1,20 @@
 <h3>Your Upcoming Concerts</h3>
-	<!-- <p><%= @attendances %></p> -->
 
 <% @attendances.each do |attendance| %>
-	<% concert = attendance.concert %>
-	<% if concert.date > Date.today %>
-		<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></p>
-	<% elsif concert.date < Date.today %>
-		<h3>Your Past Concerts</h3>
+	<% if attendance.concert.date > Date.today %>
+		<% concert = attendance.concert %>
 		<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></p>
 	<% end %>
+<% end %>
+
+<h3>Your Past Concerts</h3>	
+
+<% @attendances.each do |attendance| %>
+	<% if attendance.concert.date < Date.today %>
+		<% concert = attendance.concert %>
+		<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></p>
+	<% end %>
+
 <% end %>
 
 <p><%= link_to "Find some more concerts!", root_path, class: "enter" %></p>

@@ -3,9 +3,15 @@
 
 <!-- Delete wouldn't work?? -->
 
-
-<!-- if !@venue.concerts %> -->
-
-<%= form_for @venue, method: :delete do |f| %>
+<% if @venue.concerts.length == 0 %>
+	<%= form_for [@concert, @venue], method: :delete do |f| %>
 	<%= f.submit 'Delete!', class: 'delete' %>
+	<% end %>
+<% else %>
+<p id="notice">There are concerts associated with this venue, so you can't delete it unless you first delete:</p>
+<ul class="reg">
+<% @venue.concerts.each do |concert| %>
+	<li><%= link_to concert.headliner, concert_path(concert) %></li>
+<% end %>
+
 <% end %>

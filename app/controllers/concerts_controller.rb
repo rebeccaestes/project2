@@ -48,9 +48,7 @@ class ConcertsController < ApplicationController
 
 	def yourcal
 		@concerts = Concert.all.order(:date)
-		if current_user
-			@attendances = current_user.attendances
-		end
+		@attendances = current_user.attendances
 	end
 
 	def add_attendance
