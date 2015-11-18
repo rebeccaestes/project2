@@ -18,11 +18,12 @@
       <li id="track12nav" class="nav"><a href="/">Track 12</a></li>
       <li class="nav"><%= link_to 'your calendar', yourcal_path %></li>
       <li class="nav"><%= link_to 'add a concert', new_concert_path %></li>
+      <li class="nav"><%= link_to 'admin console', concert_venues_path(1) %></li>
       <li class="nav">
         <% if current_user %>
           <%= link_to 'sign out', destroy_user_session_path, :method => :delete %>
         <% else %>
-            <%= link_to 'sign up', new_user_registration_path %>/
+            <%= link_to 'sign up', new_user_registration_path %>
             <%= link_to 'log in', new_user_session_path %>
         <% end %>
       </li>

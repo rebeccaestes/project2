@@ -120,6 +120,14 @@ h3 {
   font-family: 'Raleway', sans-serif;
 }
 
+h4 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #A8003B;
+  font-size: 15px;
+  font-family: 'Raleway', sans-serif;
+}
+
 .nav {
   font-family: 'Raleway', sans-serif;
   text-decoration: none;

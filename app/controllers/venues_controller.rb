@@ -5,6 +5,8 @@ class VenuesController < ApplicationController
 
 	def index
 		@venues = Venue.all
+		@concerts = Concert.all
+		# @attendances = Attendance.all
 	end
 
 	def new

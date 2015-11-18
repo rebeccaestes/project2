@@ -14,11 +14,22 @@
 	<% end %>
 <% end %>
 
-<!-- list them -->
-<% if others_attending.length == 0 %>
+<!-- list them, with appropriate tense depending on if concert was in past or future -->
+<% if others_attending.length == 0 && @concert.date >= Date.today %>
 	<p>No one else is going ... yet.
-<% else %>
+
+<% elsif @concert.date >= Date.today %>
 	<p>Other Track 12 members are going!
+	<ul id = "attendances">
+	<% others_attending.each do |other| %>
+		<li><%= other.user.email %></li>
+	<% end %>
+
+<% elsif @concert.date < Date.today && others_attending.length == 0 %>
+	<p>No one else attended. Their loss!</p>
+
+<% elsif @concert.date < Date.today %>
+	<p>Other Track 12 members went!
 	<ul id = "attendances">
 	<% others_attending.each do |other| %>
 		<li><%= other.user.email %></li>
@@ -28,11 +39,15 @@
 </p>
 
 <!-- for logged-in users: toggle attendance; invite button; edit button (eventually to be visible only to owner and admins) -->
-<% if current_user %>
+<% if current_user && @concert.date >= Date.today %>
 	<% if Attendance.find_by(user: current_user, concert: @concert) %>
 		<p><%= link_to "I'm not going", remove_attendance_concert_path(@concert), method: :delete, class: "enter" %>
 	<% else %>
 		<p><%= link_to "I'm going!", add_attendance_concert_path(@concert), method: :post, class: "enter" %>
 	<% end %>
+
 	<%= link_to "Invite a friend", "mailto:?Subject=Want%20to%20see%20a%20" + @concert.headliner + "%20concert%20with%20me?&body=It\'s%20" + @concert.date.strftime('%b. %d') + "%20at%20" + @concert.venue.name + ".%20Get%20all%20the%20info%20at%20track12.com/concert/id!", class: "enter" %><%= link_to "Edit this info", edit_concert_path(@concert), class: "enter" %></p>
+
+<% elsif current_user && @concert.date < Date.today && Attendance.find_by(user: current_user, concert: @concert) %>
+		<p class="enter">You went!</p>
 <% end %>

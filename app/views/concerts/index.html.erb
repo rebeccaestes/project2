@@ -1,3 +1,4 @@
+
 <h2>Welcome to <span class="track12">Track 12</span></h2>
 
 <% if current_user %>
@@ -10,9 +11,28 @@
 
 <% end %>
 
-<h3>All Upcoming Concerts</h3>
+<h3>Upcoming Concerts</h3>
+
+<!-- create array of unique cities -->
+<% cities = [] %>
+<% @concerts.each do |this_concert| %>
+	<% cities.push(this_concert.venue.city) %>
+	<% cities = cities.uniq %>
+<% end %>
+
+<form action="filter" method="get">
+	Filter by city:
+	<select name="city">
+     	<%= cities.each do |city| %>
+        	<option value="<%= city %>"><%= city %></option>
+     	 <% end %>
+ 	</select>
+ 	<input type="submit" value="Filter">
+ </form>
+
+
 <% @concerts.each do |concert| %>
-	<% if concert.date > Date.today %>
+	<% if concert.date >= Date.today %>
 		<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %>
 	<% end %>
 	</p>

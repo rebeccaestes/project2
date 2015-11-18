@@ -3,6 +3,11 @@ class ConcertsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :yourcal]
 	# before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+	def filter
+		session[:city] = params[:city]
+		redirect_to root_path
+	end
+
 	def index
 		@concerts = Concert.all.order(:date)
 		if current_user
@@ -17,8 +22,12 @@ class ConcertsController < ApplicationController
 	end
 
 	def show 
-		@concert = Concert.find(params[:id])
-		@attendances = Attendance.all
+		if params[:id].to_i == true
+			@concert = Concert.find(params[:id])
+			@attendances = Attendance.all
+		else
+			redirect_to filter_path(params[:filter_by])
+		end
 	end
 
 	def create
@@ -64,6 +73,12 @@ class ConcertsController < ApplicationController
 		@concert.attendances.where(user: @user).destroy_all
 		redirect_to concert_path(@concert), notice: "Got it. Maybe next time?"
 	end
+
+# 	<form action="/concerts/filter" method="get" -->
+#   <label>Filter by City:</label>
+#   <input type="text" name="filter_city">
+#   <input type="submit" value="sort">
+# </form>
 
 	private
 	def concert_params

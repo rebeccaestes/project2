@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   get '/yourcal', to: 'concerts#yourcal', as: :yourcal
-
+  get '/filter', to: 'concerts#filter' 
 
   resources :concerts do
     member do

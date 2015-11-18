@@ -1,20 +1,29 @@
 <h3>Your Upcoming Concerts</h3>
 
+<!-- push attendances concerts still exist into current_attendances -->
+<% current_attendances = [] %>
 <% @attendances.each do |attendance| %>
-	<% if attendance.concert.date > Date.today %>
-		<% concert = attendance.concert %>
+	<% if attendance.concert %>
+		<% current_attendances.push(attendance) %>
+	<% end %>
+<% end %>
+
+<!-- iterate through current_attendances and display upcoming ones -->
+<% current_attendances.each do |curr_att| %>
+	<% if curr_att.concert.date > Date.today %>
+		<% concert = curr_att.concert %>
 		<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></p>
 	<% end %>
 <% end %>
 
 <h3>Your Past Concerts</h3>	
 
-<% @attendances.each do |attendance| %>
-	<% if attendance.concert.date < Date.today %>
-		<% concert = attendance.concert %>
+<!-- iterate through current_attendances and display past ones -->
+<% current_attendances.each do |curr_att| %>
+	<% if curr_att.concert.date < Date.today %>
+		<% concert = curr_att.concert %>
 		<p><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></p>
 	<% end %>
-
 <% end %>
 
 <p><%= link_to "Find some more concerts!", root_path, class: "enter" %></p>
