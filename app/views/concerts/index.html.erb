@@ -23,7 +23,7 @@
 <!-- filter by -->
 <form action="/concerts" method="get">
 	<strong>Filter by city:</strong>
-	<select name="filter[city]">
+	<select name="city">
 	    <option value="all">All</option>
      	<%= cities.each do |city| %>
         	<option value="<%= city %>"><%= city %></option>
@@ -33,7 +33,7 @@
  </form>
 
 <!-- iterate through upcoming concerts, display link, indicate if user is attending -->
-<% @all_concerts.each do |concert| %>
+<% @concerts.each do |concert| %>
 	<% if concert.date >= Date.today %>
 		<p><span class="upcoming"><%= link_to "#{concert.headliner}", concert_path(concert) %>, <%= "#{concert.date.strftime("%b. %d, %Y")} at #{concert.venue.name}" %></span>
 		<% concert.attendances.each do |attendance| %>
@@ -44,13 +44,3 @@
 	<% end %>
 <% end %>
 </p>
-
-
-
-<%= params[:filter] %>
-
-<%= borabora = Venue.find_by(city: 'Bora Bora') %>
-<%= borabora.id %>
-
-
-

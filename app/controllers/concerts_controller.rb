@@ -4,25 +4,28 @@ class ConcertsController < ApplicationController
 	# before_action :set_post, only: [:show, :edit, :update, :destroy]
 
 	def filter_cities (selected_city)
-		selected_concerts = []
-		@concerts = Concert.venue.find_by(city: selected_city)
-		
+		@selected_concerts = []
+		@all_concerts.each do |concert|
+			if selected_city == concert.venue.city
+				@selected_concerts.push(concert)
+			end
+		end
+		return @selected_concerts
 	end
 
 	def index
-		@user = current_user
+		# @user = current_user
 		@all_concerts = Concert.all.order(:date)
 		@concerts = Concert.all.order(:date)
 		if params[:city] == 'all'
 			@concerts = Concert.all.order(:date)
 		else
-			filter_cities (params[:city])
+			@concerts = filter_cities (params[:city])
 		end
-		if current_user
-			@attendances = current_user.attendances
-		end
-	end
-		
+		# if current_user
+		# 	@attendances = current_user.attendances
+		# end
+
 		if current_user
 			@attendances = current_user.attendances
 		end
@@ -34,7 +37,7 @@ class ConcertsController < ApplicationController
 		@venues = Venue.all
 	end
 
-	def show 
+	def show
 			@concert = Concert.find(params[:id])
 			@attendances = Attendance.all
 	end
@@ -83,17 +86,11 @@ class ConcertsController < ApplicationController
 		redirect_to concert_path(@concert), notice: "Got it. Maybe next time?"
 	end
 
-# 	<form action="/concerts/filter" method="get" -->
-#   <label>Filter by City:</label>
-#   <input type="text" name="filter_city">
-#   <input type="submit" value="sort">
-# </form>
-
 	private
 	def concert_params
-		params.require(:concert).permit( 
-			:date, 
-			:headliner, 
+		params.require(:concert).permit(
+			:date,
+			:headliner,
 			:headliner_pic,
 			:headliner_url,
 			:openers_etc,
