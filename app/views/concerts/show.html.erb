@@ -7,7 +7,7 @@
 <p><%= @concert.openers_etc %> <%= link_to "Tickets are $#{@concert.price}", @concert.buy %>.  </p>
 
 <!-- pull emails of other attendances -->
-<% others_attending = [] %> 
+<% others_attending = [] %>
 <% @attendances.each do |attendance| %>
 	<% if attendance.concert == @concert && User.find(attendance.user) != current_user%>
 		<% others_attending.push(attendance) %>
@@ -51,3 +51,5 @@
 <% elsif current_user && @concert.date < Date.today && Attendance.find_by(user: current_user, concert: @concert) %>
 		<p class="enter">You went!</p>
 <% end %>
+
+<!-- Impressive!  At a glance it is tough to parse through.  Maybe use some indentation to help with the reading flow. -->

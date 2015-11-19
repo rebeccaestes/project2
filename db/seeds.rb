@@ -61,6 +61,6 @@ concerts = Concert.create([
 ])
 
 user = User.create([
-	email: "estes.rebecca@gmail.com",
-	password: drowssap}
+	{email: "estes.rebecca@gmail.com",
+	password: "drowssap"}	
 ])
