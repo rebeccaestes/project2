@@ -3,30 +3,26 @@ class ConcertsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :yourcal]
 	# before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-	def filter
-		session[:city] = params[:filter]
-		redirect_to root_path
+	def filter_cities (selected_city)
+		selected_concerts = []
+		@concerts = Concert.venue.find_by(city: selected_city)
+		
 	end
 
 	def index
 		@user = current_user
 		@all_concerts = Concert.all.order(:date)
-		@city = params[:filter]
-		# @venue = Venue.find_by(city: @city)
-		if params[:filter] == '{"city"=>"all"}'
+		@concerts = Concert.all.order(:date)
+		if params[:city] == 'all'
 			@concerts = Concert.all.order(:date)
-		elsif params[:filter] == '{"city"=>"Baltimore, MD"}'
-			@balt_venues = Venue.find_by(city: 'Baltimore, MD')
-			@concerts = Concert.where(venue: @balt_venues)
-		elsif params[:filter] == 'Washington, DC'
-			@concerts = Concert.venue.where(city: 'Washington, DC')
-		# # if session[:city] == all
-		# 	# @concerts = Concert.all.order(:date)
-		# @dc_concerts = Concert.venue.where(city: 'Baltimore, MD')
-			
+		else
+			filter_cities (params[:city])
 		end
+		if current_user
+			@attendances = current_user.attendances
+		end
+	end
 		
-
 		if current_user
 			@attendances = current_user.attendances
 		end
