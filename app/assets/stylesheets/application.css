@@ -54,7 +54,7 @@ li#home {
   font-family: 'Berkshire Swash', cursive;
   display: inline;
   font-size: 30px;
-  padding-right: 10px;  
+  padding-right: 10px;
   /* why doesn't that work when I try a %? */
 }
 
@@ -136,7 +136,8 @@ h4 {
 h2 {
   color: #A8003B;
   font-family: 'Raleway', sans-serif;
-
+  padding-top: 15px;
+  padding-bottom: 5px;
 }
 
 .track12 {

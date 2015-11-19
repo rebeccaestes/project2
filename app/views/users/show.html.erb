@@ -10,11 +10,11 @@
   <% end %>
 </ul>
 
-<h2>Friended by Users</h2>
+<h3>Friended by Users</h3>
 <ul class="reg">
   <% for user in @user.inverse_friends %>
     <li><%= user.email %></li>
   <% end %>
 </ul>
 
-<h2><%= link_to "Find Friends", users_path %></h2>
+<h4><%= link_to "Go back to User Connect", users_path %></h4>

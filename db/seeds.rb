@@ -6,21 +6,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-venues = Venue.create([ 
+venues = Venue.create([
 	{name: "9:30 Club",
 		url: "http://www.930.com",
 		city: "Washington, DC"
 	}
 ])
 
-venues = Venue.create([ 
+venues = Venue.create([
 	{name: "Ram's Head Live",
 		url: "http://www.ramsheadlive.com",
 		city: "Baltimore, MD"
 	}
 ])
 
-venues = Venue.create([ 
+venues = Venue.create([
 	{name: "The Tiki Hut",
 		url: "http://www.google.com",
 		city: "Bora Bora"
@@ -58,4 +58,9 @@ concerts = Concert.create([
 		buy: "www.boraboraisland.com",
 		price: 30,
 		venue_id: 3}
+])
+
+user = User.create([
+	email: "estes.rebecca@gmail.com",
+	password: drowssap}
 ])
