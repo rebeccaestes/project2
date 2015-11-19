@@ -1,5 +1,8 @@
 class ConcertsController < ApplicationController
 
+	# Looks good.  I assume the commented out code will be removed before production, if not it might not be a bad idea to do so.
+
+
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :yourcal]
 	# before_action :set_post, only: [:show, :edit, :update, :destroy]
 
