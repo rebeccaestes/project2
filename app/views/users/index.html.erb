@@ -6,7 +6,10 @@
 <h4>Users</h4>
 <ul class="reg"><% @users.each do |user| %>
 		<% if your_friends.include? user %>
-		<li> <span class="friend"><%= link_to "#{user.email}", user_path(user.id) %></span> &#9733; You're friends!</li>
+		<li> <span class="friend">
+			<%= link_to "#{user.email}", user_path(user.id) %>
+		</span>
+		<span class="friend"> &#9733; You're friends!</span></li>
     	<% elsif user.email != current_user.email  %>
     	   <li> <span class="friend">  <%= user.email %></span>
 		<%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %></li>
@@ -14,4 +17,4 @@
 <% end %>
   </ul>
 
-  <p><%= link_to "See your friends", user_path(current_user) %></p>
+  <p><%= link_to "View or edit your friends", user_path(current_user) %></p>

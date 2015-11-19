@@ -7,13 +7,13 @@ def create
     friend = @friendship.friend
     flash[:error] = "Issues adding #{friend.email}: #{@friendship.errors.full_messages}"
   end
-  redirect_to current_user
+  redirect_to users_path
 end
 
   def destroy
     @friendship = current_user.friendships.find(params[:id])
     @friendship.destroy
     flash[:notice] = "Removed friendship."
-    redirect_to current_user
+    redirect_to users_path
   end
 end

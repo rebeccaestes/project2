@@ -19,7 +19,7 @@ class ConcertsController < ApplicationController
 		@concerts = Concert.all.order(:date)
 		if params[:city] == 'all'
 			@concerts = Concert.all.order(:date)
-		else
+		elsif params[:city]
 			@concerts = filter_cities (params[:city])
 		end
 		# if current_user
@@ -32,32 +32,38 @@ class ConcertsController < ApplicationController
 	end
 
 	def new
-		# @user = current_user
+		@user = current_user
 		@concert = Concert.new
 		@venues = Venue.all
 	end
 
 	def show
-			@concert = Concert.find(params[:id])
-			@attendances = Attendance.all
+		@concert = Concert.find(params[:id])
+		@attendances = Attendance.all
+		@owner = @concert.user
 	end
 
 	def create
-		# @user = current_user
-		@concert = Concert.create!(concert_params)
+		@user = current_user
+		@concert = Concert.create!(concert_params.merge(user: @user))
 		redirect_to concert_path(@concert), notice: "Concert created!"
 	end
 
 	def edit
 		@concert = Concert.find(params[:id])
+		@owner = @concert.user
+		# if current_user.id > 1 || current_user != @owner
+		# 	flash[:alert] = "Access denied! You didn't create this concert, so you can't edit it."
+		# end
 		@venue = @concert.venue
 		@venues = Venue.all
 		@venue_concerts = @venue.concerts
 	end
 
 	def update
+		@user = current_user
 		@concert = Concert.find(params[:id])
-		@concert.update(concert_params)
+		@concert.update(concert_params.merge(user: @user))
 		redirect_to concert_path(@concert), notice: "Concert updated!"
 	end
 
@@ -96,6 +102,7 @@ class ConcertsController < ApplicationController
 			:openers_etc,
 			:buy,
 			:price,
-			:venue_id )
+			:venue_id,
+			:user_id )
 	end
 end

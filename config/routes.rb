@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :friendships, only: [:create, :destroy]
 
   get '/yourcal', to: 'concerts#yourcal', as: :yourcal
-  get '/filter', to: 'concerts#filter' 
+  get '/admin', to: 'users#admin' 
 
   resources :concerts do
     member do

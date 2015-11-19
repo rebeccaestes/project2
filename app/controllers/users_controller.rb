@@ -11,4 +11,9 @@ class UsersController < ApplicationController
     @you = current_user
     @user = User.find(params[:id])
   end
+
+  def admin
+    @venues = Venue.all
+    @concerts = Concert.all
+  end
 end

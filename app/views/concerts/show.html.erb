@@ -2,12 +2,14 @@
 <%= link_to "#{@concert.venue.name}", @concert.venue.url %>
 <%= @concert.date.strftime("%b. %d, %Y") %> <%= @concert.venue.city %> </h3>
 
+<p> <div class="subtitle">Created by <%= @owner.email %>.</div></p>
+
 <%= image_tag @concert.headliner_pic, alt: "#{@concert.headliner}" %>
 
 <p><%= @concert.openers_etc %> <%= link_to "Tickets are $#{@concert.price}", @concert.buy %>.  </p>
 
 <!-- pull emails of other attendances -->
-<% others_attending = [] %> 
+<% others_attending = [] %>
 <% @attendances.each do |attendance| %>
 	<% if attendance.concert == @concert && User.find(attendance.user) != current_user%>
 		<% others_attending.push(attendance) %>
@@ -45,9 +47,12 @@
 	<% else %>
 		<p><%= link_to "I'm going!", add_attendance_concert_path(@concert), method: :post, class: "enter" %>
 	<% end %>
+	<% if current_user == @concert.user || current_user.id == 1 %>
+		<%= link_to "Edit this info", edit_concert_path(@concert), class: "enter", target: "_blank" %>
+	<% end %>
 
-	<%= link_to "Invite a friend", "mailto:?Subject=Want%20to%20see%20a%20" + @concert.headliner + "%20concert%20with%20me?&body=It\'s%20" + @concert.date.strftime('%b. %d') + "%20at%20" + @concert.venue.name + ".%20Get%20all%20the%20info%20at%20track12.com/concert/id!", class: "enter" %><%= link_to "Edit this info", edit_concert_path(@concert), class: "enter", target: "_blank" %></p>
+	<%= link_to "Invite a friend", "mailto:?Subject=Want%20to%20see%20a%20" + @concert.headliner + "%20concert%20with%20me?&body=It\'s%20" + @concert.date.strftime('%b. %d') + "%20at%20" + @concert.venue.name + ".%20Get%20all%20the%20info%20at%20track12.com/concert/id!", class: "enter" %>
 
 <% elsif current_user && @concert.date < Date.today && Attendance.find_by(user: current_user, concert: @concert) %>
 		<p class="enter">You went!</p>
-<% end %>
+<% end %></p>

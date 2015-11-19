@@ -1,5 +1,15 @@
 <p>Username: <%= @user.email %></p>
 
+<h4>Attending:</h4>
+<ul class="reg">
+
+  <% for attendance in @user.attendances %>
+    <li><%= link_to "#{attendance.concert.headliner}", concert_path(attendance.concert.id)  %>
+      </li>
+
+<% end %>
+</ul>
+
 <h2>Friends</h2>
 <ul class="reg">
   <% for friendship in @user.friendships %>

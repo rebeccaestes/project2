@@ -12,6 +12,7 @@ class CreateConcerts < ActiveRecord::Migration
 	  t.string "buy"
 	  t.integer "price"
 	  t.references "venue"
+    t.references "user"
       t.timestamps null: false
     end
   end

@@ -1,8 +1,6 @@
 <h2> Edit a venue</h2>
 <%= render partial: "form" %>
 
-<!-- Delete wouldn't work?? -->
-
 <% if @venue.concerts.length == 0 %>
 	<%= form_for [@concert, @venue], method: :delete do |f| %>
 	<%= f.submit 'Delete!', class: 'delete' %>

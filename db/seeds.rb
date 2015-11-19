@@ -14,6 +14,13 @@ venues = Venue.create([
 ])
 
 venues = Venue.create([
+	{name: "Bowery Ballroom",
+		url: "http://www.boweryballroom.com",
+		city: "New York, NY"
+	}
+])
+
+venues = Venue.create([
 	{name: "Ram's Head Live",
 		url: "http://www.ramsheadlive.com",
 		city: "Baltimore, MD"
@@ -23,7 +30,7 @@ venues = Venue.create([
 venues = Venue.create([
 	{name: "The Tiki Hut",
 		url: "http://www.google.com",
-		city: "Bora Bora"
+		city: "Papeete, Tahiti"
 	}
 ])
 
@@ -35,7 +42,8 @@ concerts = Concert.create([
 		openers_etc: "Openers are Centimeter and Millimeter. Doors at 7 pm, show starts at 8.",
 		buy: "http://www.google.com",
 		price: 30,
-		venue_id: 1}
+		venue_id: 1,
+		user_id: 1}
 ])
 
 concerts = Concert.create([
@@ -46,7 +54,8 @@ concerts = Concert.create([
 		openers_etc: "Doors at 7 pm, show starts at 8.",
 		buy: "https://www.ticketfly.com/purchase/event/961003",
 		price: 30,
-		venue_id: 2}
+		venue_id: 2,
+		user_id: 1}
 ])
 
 concerts = Concert.create([
@@ -57,10 +66,11 @@ concerts = Concert.create([
 		openers_etc: "Openers are The Pineapples. 21+.",
 		buy: "www.boraboraisland.com",
 		price: 30,
-		venue_id: 3}
+		venue_id: 3,
+		user_id: 1}
 ])
 
 user = User.create([
-	email: "estes.rebecca@gmail.com",
-	password: drowssap}
+	{email: "estes.rebecca@gmail.com",
+	password: "drowssap"}
 ])

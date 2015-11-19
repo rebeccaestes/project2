@@ -1,14 +1,12 @@
 <h2>Top Secret Administrative Zone</h2>
 
-<p>These links will all open in new windows.</p>
-
 <h4>Edit/delete a venue:</h4>
 <ul class="reg"><% @venues.each do |venue| %>
-	<li><%= link_to venue.name, edit_concert_venue_path(Concert.last, venue.id), target: "_blank" %></li>
+	<li><%= link_to venue.name, edit_concert_venue_path(Concert.last, venue.id) %></li>
 <% end %>
 </ul>
 
-<h4>Add a <%= link_to "new venue", new_concert_venue_path(Concert.last), target: "_blank" %></h4>
+<h4>Add a <%= link_to "new venue", new_concert_venue_path(Concert.last) %></h4>
 
 <h4>Edit/delete a concert:</h4>
 <ul class="reg"><% @concerts.each do |concert| %>

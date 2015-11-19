@@ -10,7 +10,7 @@
 	<%= f.text_field :headliner_url %></p>
 
 	<p><%= f.label :venue %><%= f.collection_select(:venue_id, @venues.order(:name), :id, :name) %>
-	 
+
 	<% if @concert.id %>
 		<div class="subtitle">(or, add a <%= link_to "new venue", new_concert_venue_path(@concert) %>)</div>
 		<% else %>
@@ -28,7 +28,7 @@
 	<p><%= f.label :price %>
 	<%= f.number_field :price %></p>
 
-	<p><%= f.label :buy %>
+	<p><%= f.label :URL_for_buying_tickets %>
 	<%= f.text_field :buy %></p>
 
 	<%= f.submit 'update', class: 'enter' %>

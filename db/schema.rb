@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20151118205510) do
     t.string   "buy"
     t.integer  "price"
     t.integer  "venue_id"
+    t.integer  "user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
