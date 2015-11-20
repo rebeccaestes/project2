@@ -1,14 +1,10 @@
-<!--  -->
-
 <h2>Welcome to <span class="track12">Track 12</span></h2>
 
 <% if current_user %>
-
-<p>Check out the menu above to see the concerts you're going to, or to add a new one!</p>
+	<p>Check out the menu above to see the concerts you're going to, or to add a new one!</p>
 
 <% else %>
-
-<p>With Track 12, you can get all the information about upcoming concerts in your area, see who else is going, and invite your friends - all in one easy place! <%= link_to "Sign up today", new_user_registration_path %> - it'll only take a moment.</p>
+	<p>With Track 12, you can get all the information about upcoming concerts in your area, see who else is going, and invite your friends - all in one easy place! <%= link_to "Sign up today", new_user_registration_path %> - it'll only take a moment.</p>
 
 <% end %>
 
@@ -21,14 +17,14 @@
 	<% cities = cities.uniq %>
 <% end %>
 
-<!-- filter by -->
+<!-- filter by city (according to the HTML validator, 'text is not allowed in element select in this context.' I looked at the line but I have no idea where it's coming from ... Everything still works  -->
 <form action="/concerts" method="get">
 	<strong>Filter by city:</strong>
 	<select name="city">
-	    <option value="all">All</option>
+	  	<option value="all">All</option>
      	<%= cities.each do |city| %>
-        	<option value="<%= city %>"><%= city %></option>
-     	 <% end %>
+      	<option value="<%= city %>"><%= city %></option>
+     	<% end %>
  	</select>
  	<input type="submit" value="Filter">
  </form>

@@ -13,10 +13,7 @@ grey: #CFCFCA
 body {
   font-family: 'Biryani', sans-serif;
   background: #FCF7D7;
-  /*margin-left: 200px;
-  margin-right: 200px;*/
   color: #274459;
-  /*F1FFC9*/
   font-size: 14px;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -55,7 +52,6 @@ li#home {
   display: inline;
   font-size: 30px;
   padding-right: 10px;
-  /* why doesn't that work when I try a %? */
 }
 
 #nav a {
@@ -84,7 +80,7 @@ p a:hover {
 
 p {
   padding-top: 5px;
-  }
+}
 
 p.notice {
   color: darkslategrey;
@@ -97,20 +93,6 @@ p.alert {
   font-size: 18px;
   font-family: 'Raleway', sans-serif;
 }
-
-/*.boardGallery a {
-  text-decoration: none;
-  background-color: #CFCFCA;
-  margin: 20px;
-  padding: 40px;
-  display: block;
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  color: #A8003B;
-  border-radius: 5px;
-}*/
-
 
 h3 {
   padding-top: 15px;
@@ -170,8 +152,6 @@ div.subtitle {
 }
 
 .attending {
-  /*font-size: 13px;*/
-  /*font-style: italic;*/
   color: #A8003B;
   font-family: 'Raleway', sans-serif;
 
@@ -189,7 +169,6 @@ div.subtitle {
   box-shadow: 1px 1px 1px #888888;
   font-size: 16px;
   font-family: 'Raleway', sans-serif;
-
 }
 
 .enter:hover {

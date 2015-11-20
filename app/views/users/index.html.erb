@@ -11,10 +11,10 @@
 		</span>
 		<span class="friend"> &#9733; You're friends!</span></li>
     	<% elsif user.email != current_user.email  %>
-    	   <li> <span class="friend">  <%= user.email %></span>
-		<%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %></li>
+    	   <li><span class="friend"><%= user.email %></span>
+				 <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %></li>
 		<% end %>
 <% end %>
-  </ul>
+</ul>
 
-  <p><%= link_to "View or edit your friends", user_path(current_user) %></p>
+<p><%= link_to "View or edit your friends", user_path(current_user) %></p>

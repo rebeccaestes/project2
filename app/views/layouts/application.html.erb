@@ -22,17 +22,12 @@
         <li class="nav"><%= link_to 'admin console', admin_path %></li>
       <% end %>
       <% if current_user %>
-        <li class="nav">
-          <%= link_to 'user connect', users_path %>
-        </li>
-        <li class="nav">
-          <%= link_to 'sign out', destroy_user_session_path, :method => :delete %>
-        </li>
+        <li class="nav"><%= link_to 'user connect', users_path %></li>
+        <li class="nav"><%= link_to 'sign out', destroy_user_session_path, :method => :delete %></li>
       <% else %>
-      <li class="nav">
-        <%= link_to 'sign up', new_user_registration_path %></li>
+        <li class="nav"><%= link_to 'sign up', new_user_registration_path %></li>
         <li class="nav"><%= link_to 'log in', new_user_session_path %></li>
-        <% end %>
+      <% end %>
     </ul>
   </div>
 

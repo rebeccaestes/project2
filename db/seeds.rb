@@ -43,7 +43,8 @@ concerts = Concert.create([
 		buy: "http://www.google.com",
 		price: 30,
 		venue_id: 1,
-		user_id: 1}
+		user_id: 1
+	}
 ])
 
 concerts = Concert.create([
@@ -67,10 +68,12 @@ concerts = Concert.create([
 		buy: "www.boraboraisland.com",
 		price: 30,
 		venue_id: 3,
-		user_id: 1}
+		user_id: 1
+	}
 ])
 
 user = User.create([
 	{email: "estes.rebecca@gmail.com",
-	password: "drowssap"}
+	password: "drowssap"
+	}
 ])

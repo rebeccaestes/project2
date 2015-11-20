@@ -1,7 +1,6 @@
 class ConcertsController < ApplicationController
 
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :yourcal]
-	# before_action :set_post, only: [:show, :edit, :update, :destroy]
 
 	def filter_cities (selected_city)
 		@selected_concerts = []
@@ -14,7 +13,6 @@ class ConcertsController < ApplicationController
 	end
 
 	def index
-		# @user = current_user
 		@all_concerts = Concert.all.order(:date)
 		@concerts = Concert.all.order(:date)
 		if params[:city] == 'all'
@@ -48,9 +46,6 @@ class ConcertsController < ApplicationController
 	def edit
 		@concert = Concert.find(params[:id])
 		@owner = @concert.user
-		# if current_user.id > 1 || current_user != @owner
-		# 	flash[:alert] = "Access denied! You didn't create this concert, so you can't edit it."
-		# end
 		@venue = @concert.venue
 		@venues = Venue.all
 		@venue_concerts = @venue.concerts
@@ -66,6 +61,7 @@ class ConcertsController < ApplicationController
 	def destroy
 		@concert = Concert.find(params[:id])
 		@concert.destroy
+		@concert.attendances.destroy_all
 		redirect_to concerts_path, notice: "Concert deleted!"
 	end
 
