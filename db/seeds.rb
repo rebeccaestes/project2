@@ -61,7 +61,7 @@ concerts = Concert.create([
 concerts = Concert.create([
 	{headliner: "The Hula Collective",
 		headliner_pic: "http://www.cypressfineart.com/artists/l_schory/images2/20100123-7-HulaGirl.jpg",
-		headliner_url: "http://.boraboraisland.com",
+		headliner_url: "http://www.boraboraisland.com",
 		date: 20151212,
 		openers_etc: "Openers are The Pineapples. 21+.",
 		buy: "www.boraboraisland.com",

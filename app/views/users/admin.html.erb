@@ -1,5 +1,6 @@
 <h2>Top Secret Administrative Zone</h2>
 
+
 <h4>Edit/delete a venue:</h4>
 <ul class="reg"><% @venues.each do |venue| %>
 	<li><%= link_to venue.name, edit_concert_venue_path(Concert.last, venue.id) %></li>

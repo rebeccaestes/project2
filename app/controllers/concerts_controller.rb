@@ -22,10 +22,6 @@ class ConcertsController < ApplicationController
 		elsif params[:city]
 			@concerts = filter_cities (params[:city])
 		end
-		# if current_user
-		# 	@attendances = current_user.attendances
-		# end
-
 		if current_user
 			@attendances = current_user.attendances
 		end

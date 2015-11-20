@@ -2,7 +2,7 @@
 <%= link_to "#{@concert.venue.name}", @concert.venue.url %>
 <%= @concert.date.strftime("%b. %d, %Y") %> <%= @concert.venue.city %> </h3>
 
-<p> <div class="subtitle">Created by <%= @owner.email %>.</div></p>
+ <div class="subtitle"><p>Created by <%= @owner.email %>.<p></div>
 
 <%= image_tag @concert.headliner_pic, alt: "#{@concert.headliner}" %>
 
@@ -16,7 +16,7 @@
 	<% end %>
 <% end %>
 
-<!-- list them, with appropriate tense depending on if concert was in past or future -->
+<!-- list people attending, with appropriate tense depending on if concert was in past or future -->
 <% if others_attending.length == 0 && @concert.date >= Date.today %>
 	<p>No one else is going ... yet.
 
@@ -36,8 +36,8 @@
 	<% others_attending.each do |other| %>
 		<li><%= other.user.email %></li>
 	<% end %>
+	</ul>
 <% end %>
-</ul>
 </p>
 
 <!-- for logged-in users: toggle attendance; invite button; edit button (eventually to be visible only to owner and admins) -->
@@ -48,10 +48,10 @@
 		<p><%= link_to "I'm going!", add_attendance_concert_path(@concert), method: :post, class: "enter" %>
 	<% end %>
 	<% if current_user == @concert.user || current_user.id == 1 %>
-		<%= link_to "Edit this info", edit_concert_path(@concert), class: "enter", target: "_blank" %>
+		<%= link_to "Edit this info", edit_concert_path(@concert), class: "enter" %>
 	<% end %>
 
-	<%= link_to "Invite a friend", "mailto:?Subject=Want%20to%20see%20a%20" + @concert.headliner + "%20concert%20with%20me?&body=It\'s%20" + @concert.date.strftime('%b. %d') + "%20at%20" + @concert.venue.name + ".%20Get%20all%20the%20info%20at%20track12.com/concert/id!", class: "enter" %>
+	<%= link_to "Invite a friend", "mailto:?Subject=Want%20to%20see%20a%20" + @concert.headliner + "%20concert%20with%20me?&body=It\'s%20" + @concert.date.strftime('%b. %d') + "%20at%20" + @concert.venue.name + ".%20Get%20all%20the%20info%20at%20track12.com/concerts/" + @concert.id.to_s + "!", class: "enter", target: "_blank" %>
 
 <% elsif current_user && @concert.date < Date.today && Attendance.find_by(user: current_user, concert: @concert) %>
 		<p class="enter">You went!</p>
