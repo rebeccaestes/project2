@@ -3,6 +3,7 @@
 	<% your_friends.push(friend) %>
 <% end %>
 
+<!-- list other users; non-friends have option to add as friend -->
 <h4>Users</h4>
 <ul class="reg"><% @users.each do |user| %>
 		<% if your_friends.include? user %>

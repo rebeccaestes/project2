@@ -2,6 +2,7 @@
 
 <%= render partial: "form" %>
 
+<!-- only offer option to delete a venue if there are no concerts at it -->
 <% if @venue.concerts.length == 0 %>
 	<%= form_for [@concert, @venue], method: :delete do |f| %>
 	<%= f.submit 'Delete!', class: 'delete' %>
